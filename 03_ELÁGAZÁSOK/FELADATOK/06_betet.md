@@ -1,10 +1,12 @@
-
-
 # Bankbetét kezelő rendszer
 
-Készíts Python programot egy egyszerű banki betétkezelő rendszer szimulálására! A program a következők szerint működjön:
+Egy bank egyszerű betétkezelő rendszert használ az ügyfelek betéteinek rögzítésére. A program feladata, hogy egy ügyfél azonosítója, a választott betéttípus és az elhelyezni kívánt összeg alapján ellenőrizze a megadott adatokat, majd kiszámítsa a kamatot és a lejáratkor kivehető összeget.
 
-## Adatok
+Készítsen programot, amely elvégzi a betét rögzítését és kiértékelését! A program forráskódját mentse `bankbetet` néven!
+
+A program megírásakor a felhasználó által megadott adatok helyességét, érvényességét nem kell ellenőriznie, és feltételezheti, hogy a rendelkezésre álló adatok a leírtaknak megfelelnek.
+
+A program a következő adatokat tartalmazza:
 
 ```python
 ugyfelek = ["U101", "U102", "U103", "U104", "U105"]
@@ -15,136 +17,107 @@ betetek = []
 Statikus változók:
 
 ```python
-minimum_osszeg = 10000    # ennyi forinttól lehet betétet elhelyezni
-kamat_szazalek = 5        # a betét éves kamata 5%
+minimum_osszeg = 10000
+kamat_szazalek = 5
 ```
 
-## A program működése
+A képernyőre írást igénylő részfeladatok esetén a mintához hasonlóan írja ki a feladat sorszámát, valamint utaljon a kiírt tartalomra is!
 
-1. **Adatbekérés**
+1. Kérje be és tárolja el az ügyfél azonosítóját, a választott betéttípust, valamint az elhelyezni kívánt összeget!
 
-   * Kérd be az **ügyfél azonosítóját** (pl. `U101`).
-   * Kérd be a **betét típusát** (pl. `"1 éves betét"`).
-   * Kérd be, **mekkora összeget** szeretne elhelyezni (egész szám).
+2. Vizsgálja meg, hogy a megadott ügyfélazonosító szerepel-e az `ugyfelek` listában! Amennyiben az azonosító nem található a listában, írja ki a mintának megfelelően, hogy „Nincs ilyen ügyfél.”, majd a program fejeződjön be!
 
-2. **Banki ellenőrzések (azonnali validálás)**
+3. Vizsgálja meg, hogy a megadott betéttípus szerepel-e a `betet_tipusok` listában! Amennyiben a betéttípus nem található a listában, írja ki a mintának megfelelően, hogy „Nincs ilyen betéttípus.”, majd a program fejeződjön be!
 
-   * Ha a megadott **ügyfél azonosító nincs** az `ugyfelek` listában:
+4. Ellenőrizze, hogy a megadott összeg eléri-e a `minimum_osszeg` értékét! Ha az összeg kisebb ennél, írja ki a mintának megfelelően, hogy „A betét összege túl alacsony.”, majd a program fejeződjön be!
 
-     * írd ki: `"Nincs ilyen ügyfél."`
-     * és **azonnal lépjen ki** a program (pl. `exit()` segítségével).
-   * Ha a megadott **betét típus nincs** a `betet_tipusok` listában:
+5. Amennyiben minden adat megfelelő, rögzítse a betétet a `betetek` listában `[azonosító, betéttípus]` formában!
 
-     * írd ki: `"Nincs ilyen betéttípus."`
-     * és **azonnal lépjen ki** a program.
-   * Ha a megadott **összeg kisebb, mint `minimum_osszeg`**:
+6. Számítsa ki a kamat összegét a `kamat_szazalek` alapján, majd határozza meg a lejáratkor kivehető teljes összeget!
 
-     * írd ki: `"A betét összege túl alacsony."`
-     * és **azonnal lépjen ki** a program.
+7. Írassa ki a mintának megfelelően a sikeres betételhelyezés tényét, a kamat összegét, a lejáratkor kivehető teljes összeget, valamint azt, hogy melyik ügyfél milyen betéttípust választott!
 
-3. **Betét rögzítése**
+## Minta a szöveges kimenet kialakításához:
 
-   * Ha az ügyfél, a betét típus és az összeg is érvényes:
-
-     * adj hozzá a `betetek` listához egy új bejegyzést: `[azonosító, betéttípus]` formátumban.
-
-4. **Kamat számítás**
-
-   * Számold ki a kamatot a következő képlettel:
-
-     * `kamat = osszeg * kamat_szazalek / 100`
-   * Ezután számold ki a lejáratkor kivehető teljes összeget:
-
-     * `vegosszeg = osszeg + kamat`
-
-5. **Kimenet (outputok)**
-
-   * Végül írj ki egy üzenetet:
-     `"Sikeres betételhelyezés."`
-   * Írd ki a kamat összegét:
-     `"Kamat: X Ft"`
-     ahol `X` a kiszámolt kamat.
-   * Írd ki a lejáratkor kivehető teljes összeget:
-     `"Lejáratkor kivehető összeg: Y Ft"`
-   * Írd ki, **melyik ügyfél milyen betétet választott**:
-
-     * Minden elemre a `betetek` listában:
-
-       * `"Ügyfél: U101 - Betét típusa: 1 éves betét"`
-
----
-
-## Példa inputok és várható output
-
-### 1. Érvényes eset
+### 1. példa
 
 ```text
-Ügyfél azonosító: U101
-Betét típusa: 1 éves betét
-Mekkora összeget szeretnél elhelyezni? 50000
-```
-
-**Várható output:**
-
-```text
+1. feladat
+Adja meg az ügyfél azonosítóját: U101
+Adja meg a betét típusát: 1 éves betét
+Adja meg az elhelyezni kívánt összeget: 50000
+2. feladat
+Az ügyfél azonosítója érvényes.
+3. feladat
+A betéttípus érvényes.
+4. feladat
+A megadott összeg megfelelő.
+5. feladat
 Sikeres betételhelyezés.
+6. feladat
 Kamat: 2500 Ft
 Lejáratkor kivehető összeg: 52500 Ft
+7. feladat
 Ügyfél: U101 - Betét típusa: 1 éves betét
 ```
 
-### 2. Nem létező ügyfél
+### 2. példa
 
 ```text
-Ügyfél azonosító: U999
-```
-
-**Várható output:**
-
-```text
+1. feladat
+Adja meg az ügyfél azonosítóját: U999
+Adja meg a betét típusát: 1 éves betét
+Adja meg az elhelyezni kívánt összeget: 50000
+2. feladat
 Nincs ilyen ügyfél.
 ```
 
-### 3. Nem létező betéttípus
+### 3. példa
 
 ```text
-Ügyfél azonosító: U102
-Betét típusa: Diák extra
-```
-
-**Várható output:**
-
-```text
+1. feladat
+Adja meg az ügyfél azonosítóját: U102
+Adja meg a betét típusát: Diák extra
+Adja meg az elhelyezni kívánt összeget: 50000
+2. feladat
+Az ügyfél azonosítója érvényes.
+3. feladat
 Nincs ilyen betéttípus.
 ```
 
-### 4. Túl alacsony összeg
+### 4. példa
 
 ```text
-Ügyfél azonosító: U103
-Betét típusa: Látra szóló
-Mekkora összeget szeretnél elhelyezni? 5000
-```
-
-**Várható output:**
-
-```text
+1. feladat
+Adja meg az ügyfél azonosítóját: U103
+Adja meg a betét típusát: Látra szóló
+Adja meg az elhelyezni kívánt összeget: 5000
+2. feladat
+Az ügyfél azonosítója érvényes.
+3. feladat
+A betéttípus érvényes.
+4. feladat
 A betét összege túl alacsony.
 ```
 
-### 5. Érvényes ügyfél és betét, megfelelő összeg
+### 5. példa
 
 ```text
-Ügyfél azonosító: U104
-Betét típusa: Prémium betét
-Mekkora összeget szeretnél elhelyezni? 100000
-```
-
-**Várható output:**
-
-```text
+1. feladat
+Adja meg az ügyfél azonosítóját: U104
+Adja meg a betét típusát: Prémium betét
+Adja meg az elhelyezni kívánt összeget: 100000
+2. feladat
+Az ügyfél azonosítója érvényes.
+3. feladat
+A betéttípus érvényes.
+4. feladat
+A megadott összeg megfelelő.
+5. feladat
 Sikeres betételhelyezés.
+6. feladat
 Kamat: 5000 Ft
 Lejáratkor kivehető összeg: 105000 Ft
+7. feladat
 Ügyfél: U104 - Betét típusa: Prémium betét
 ```
