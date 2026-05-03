@@ -29,49 +29,6 @@ Készíts programot, amely elvégzi az alábbi műveleteket.
 10. Más esetben írd ki: `A dróncsapat részleges előkészítést igényel.`
 
 
-## Megoldás
-
-```python
-akkumulatorok = [88, 0, 73, 95, 100, 47, 86]
-
-legkisebb_eredeti = min(akkumulatorok)
-
-if legkisebb_eredeti == 0:
-    hibas_adat_helye = akkumulatorok.index(0)
-    torolt_adat = akkumulatorok.pop(hibas_adat_helye)
-    print("Törölt hibás adat:", torolt_adat)
-
-akkumulatorok.insert(1, 92)
-akkumulatorok.append(68)
-
-modositott_sorrend = akkumulatorok.copy()
-
-akkumulatorok.sort()
-akkumulatorok.reverse()
-
-darab = len(akkumulatorok)
-osszeg = sum(akkumulatorok)
-atlag = osszeg / darab
-legalacsonyabb = min(akkumulatorok)
-legmagasabb = max(akkumulatorok)
-teljesen_feltoltott = akkumulatorok.count(100)
-
-print("Módosított eredeti sorrend:", modositott_sorrend)
-print("Rendezett akkumulátoradatok:", akkumulatorok)
-print("A vizsgált akkumulátorok száma:", darab)
-print("Az átlagos töltöttség:", atlag)
-print("A legalacsonyabb töltöttség:", legalacsonyabb)
-print("A legmagasabb töltöttség:", legmagasabb)
-print("Teljesen feltöltött akkumulátorok száma:", teljesen_feltoltott)
-
-if legalacsonyabb < 50:
-    print("Van olyan drón, amelyet még tölteni kell.")
-elif atlag >= 80:
-    print("A dróncsapat indításra kész.")
-else:
-    print("A dróncsapat részleges előkészítést igényel.")
-```
-
 ## Expected output
 
 ```text
